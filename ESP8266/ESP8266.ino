@@ -108,7 +108,7 @@ void loop() {
   serializeJson(doc, buffer);
 
   //push MQTT
-  mqtt.publish("test", buffer);
+  mqtt.publish("test", buffer); //test is the topic of our MQTT
 
   // delay for sleep
   WiFi.setSleepMode(WIFI_LIGHT_SLEEP); //WIFI_LIGHT_SLEEP mode
