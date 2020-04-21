@@ -9,7 +9,7 @@
 //Wi-fi
 WiFiClient WIFI_CLIENT;
 const char* ssid = "Wai-Fu"; //Your WiFi Name
-const char* password = "Ndakada123";  //Your Wifi Password
+const char* password = "SuperSekritPassword";  //Your Wifi Password
 WiFiServer server(80);
 
 //Static IP
@@ -33,8 +33,8 @@ float h = 20.0;
 //MQTT
 const char* host = "192.168.137.13"; //MQQT Broker IP
 int port = 1883; //MQTT Broker port
-const char* user = "amur"; //MQTT Broker Username
-const char* pass = "inc"; //MQTT Broker Password
+const char* user = "some guy"; //MQTT Broker Username
+const char* pass = "SuperSekritPassword"; //MQTT Broker Password
 const char* clientid = "esp8266a"; //MQTT Client ID
 #undef  MQTT_MAX_PACKET_SIZE // un-define MQTT max packet size
 #define MQTT_MAX_PACKET_SIZE 500  // fix for MQTT client dropping messages over 128B

@@ -37,17 +37,17 @@ Place Holder
 
 ## Place Holder
 
-* [Place Holder](http://Place Holder/) - The Place Holder
+* [Place Holder](http://place-holder/) - The Place Holder
 
 
 ## Place Holder
 
-Please read [Place Holder](https://Place Holder) for Place Holder.
+Please read [Place Holder](https://place-holder) for Place Holder.
 
 
 ## Authors
 
-* **Place Holder** - *Place Holder* - [Place Holder](https://Place Holder)
+* **Place Holder** - *Place Holder* - [Place Holder](https://place-holder)
 
 Place Holder
 
