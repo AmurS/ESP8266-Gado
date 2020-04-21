@@ -1,6 +1,6 @@
 # ESP8266 with Grafana and InfluxDB
 
-The shit you setup for your glorious Grafana Dashboard.
+The ghetto way to setup an IoT for your glorious Grafana Dashboard.
 
 ## Getting Started
 
@@ -12,14 +12,34 @@ Ingredients :
 
 ```
 1. ESP8266
-2. A bunch of Sensor you want to use like BM180 or DHT11
-3. 10k Resistors for pull up/down
-4. 100nF Capacitors for power
-5. LDO regulator to 3.3V
-6. Proto board
+2. BM180 Barometer 
+3. DHT11 or DHT22 Temperature and Humidity sensor 
+3. 10k Resistors for pull up DHT
+4. 100nF Capacitors 
+5. 3.3V LDO regulator to supply your ESP
+6. Proto board, scrap PCB, or wire to connect everything
+
+```
+## ESP8266
+
+### Schematic
+Using ESP8266 NodeMCU v3 LoLin with a simple 3.3V LDO Regulator.
+
+![Schematic with battery](https://i.imgur.com/jvp7zIF.png)
+
+GPIO used on ESP8266 NodeMCU v3:
+```
+BMP180 I2C_SCL on D1 or GPIO 5  
+BMP180 I2C_SDA on D2 or GPIO 4
+DHT1 I/O on D4 or GPIO 2
 ```
 
-## Flashing ESP8266
+### Place Holder
+
+Using two different sensor to get a single data.
+
+
+### Flashing ESP8266
 
 Place Holder
 ```
@@ -88,11 +108,8 @@ Please read [Place Holder](https://place-holder) for Place Holder.
 
 Place Holder
 
-## License
-
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
 * Ayylmao
+
