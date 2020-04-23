@@ -94,8 +94,80 @@ mosquitto_sub -h localhost -t test -u "someguy" -P "SuperSekritPassword"
 
 ## InfluxDB
 
-* [Place Holder](http://place-holder/) - The Place Holder
+### Install InfluxDB 1.8.x and Telegraf on your server. 
+```
+https://portal.influxdata.com/downloads/
+```
+Open your influxDB configuration at `/etc/influxdb/influxdb.conf` if you're using Ubuntu, and change some parameters as below.
+```
+ [http]
+  # Determines whether HTTP endpoint is enabled.
+  enabled = true
 
+  # Determines whether the Flux query endpoint is enabled.
+  flux-enabled = true
+
+  # The bind address used by the HTTP service.
+  bind-address = ":8086"
+
+```
+Dont forget to save and restart your influxdb service.
+```
+ sudo systemctl restart influxdb
+```
+
+To setup an authentication for your InfluxDB service, we need to make an  administrator account. 
+```
+user@host:~$ influx
+Connected to http://localhost:8086 version 1.8.0
+InfluxDB shell version: 1.8.0
+> CREATE USER admin WITH PASSWORD 'SuperSekritPassword' WITH ALL PRIVILEGES
+> SHOW USERS
+user  admin
+----  -----
+admin true
+```
+And then head over again to influxdb.conf and change this parameter.
+```
+  # Determines whether user authentication is enabled over HTTP/HTTPS.
+  auth-enabled = true
+```
+Now you could restart your InfluxDB again.
+We can test the authentication by using this command : 
+```
+curl -G http://localhost:8086/query -u admin:SuperSekritPassword --data-urlencode "q=SHOW DATABASES"
+```
+If it give us a result then we're successful on setting up our InfluxDB. 
+Now its time to setup our Telegraf service. After you finish installing Telegraf, open Telegraf configuration at `/etc/telegraf/telegraf.conf` if you're using ubuntu. You could use your InfluxDB user and password for Telegraf or make another influxDB user dedicated for Telegraf.
+```
+## HTTP Basic Auth
+  username = "admin"
+  password = "SuperSekritPassword"
+```
+After this you could save the config and restart your Telegraf service.
+```
+sudo systemctl restart telegraf
+```
+### MQTT to Telegraf
+After setting up everything, now we need to make MQTT to work together with InfluxDB by using Telegraf [MQTT Consumer plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mqtt_consumer).
+
+Open your Telegraf configuration file `/etc/telegraf/telegraf.conf`, and search for input plugins and add the [MQTT Consumer plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mqtt_consumer).
+
+Change the servers to our MQTT server IP addresses and port, add our test topic to sub,  change the username and password to our MQTT user and pass, and data_format to json.
+```
+[[inputs.mqtt_consumer]]
+  servers = ["tcp://127.0.0.1:1883"] 
+  topics = [
+    "telegraf/host01/cpu",
+    "telegraf/+/mem",
+    "sensors/#",
+    "test",
+  ]
+  username = "admin"
+  password = "SuperSekritPassword"
+  data_format = "json"
+```
+Save the config and restart Telegraf service.
 
 ## Grafana
 
