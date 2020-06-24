@@ -25,7 +25,7 @@ Ingredients :
 ### Schematic
 Using ESP8266 NodeMCU v3 LoLin with a simple 3.3V LDO Regulator.
 
-![Schematic with battery](https://i.imgur.com/jvp7zIF.png)
+![Schematic with battery](https://i.imgur.com/LsPy9dy.png)
 
 GPIO used on ESP8266 NodeMCU v3:
 ```
